@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-class Square:
-    """
-Define class Square
-attribute=size
+"""
+Define a Square class
 """
 
-    def __init__(self,size=""):
-        """Instantiation with size (no type/value verification)"""
-        self.size=size
+class Square:
+    """Square class defined by size"""
+
+    def __init__(self,size):
+        """"Instantiation with size (no type/value verification)"""
+        self.__size=size
