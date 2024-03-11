@@ -1,8 +1,3 @@
-#!/usr/bin/python3
-"""
-Defines a Square
-"""
-
 
 class Square:
     """Square class defined by size"""
@@ -16,8 +11,7 @@ class Square:
             raise ValueError("size must be >= 0")
 
         self.__size = size
-     
-     def area(self):
-         """ public instance method calculate and  returns the current square area"""
-         
-        return self.__size **2
+
+    def area(self):
+        """Public instance method to calculate and return the current square area."""
+        return self.__size ** 2
