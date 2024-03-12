@@ -3,7 +3,6 @@
 Defines Square
 """
 
-
 class Square:
     """Square class defined by size"""
 
@@ -15,14 +14,14 @@ class Square:
     @size.setter
     def size(self, value):
         """sets the value of size, value must be an integer"""
-        if type (value) is not int:
+        if type(value) is not int:
             raise TypeError("size must be an integer")
-        if size<0 :
-            raise ValueError ("size must be >= 0")
+        if value < 0:
+            raise ValueError("size must be >= 0")
 
         self.__size = value
 
-     def __init__(self, size=0):
+    def __init__(self, size=0):
         """Instantiation with optional size"""
         self.size = size
 
@@ -31,11 +30,8 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
-        if self.__size==0 :
-            print ("")
+        if self.__size == 0:
+            print("")
         for i in range(0, self.__size):
             [print("#", end="") for j in range(self.__size)]
             print("")
-        
-        
-
