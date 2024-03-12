@@ -3,33 +3,27 @@
 defines Square
 """
 
-
 class Square:
     """Square class defined by size"""
 
     @property
-     def size(self):
+    def size(self):
         """retrieving size"""
-        
         return self.__size
 
     @size.setter
     def size(self, value):
-        """ sets the value of size , value must be integer"""
+        """ sets the value of size, value must be an integer"""
+        if type(value) is not int:
+            raise TypeError("size must be an integer")
+        if value < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = value
 
-    if type(size) is not int:
-         raise TypeError("size must be an integer")
-     if size < 0:
-         raise ValueError("size must be >= 0")
+    def __init__(self, size=0):
+        """Instantiation with optional size"""
+        self.size = size
 
-     self.__size = size
-
-     def __init__(self, size=0):
-         """Instantiation with optional"""
-         self.size= size
-
-     def area(self):
-         """ calculate and return the current square area."""
-         return self.__size ** 2
-
-
+    def area(self):
+        """calculate and return the current square area."""
+        return self.__size ** 2
