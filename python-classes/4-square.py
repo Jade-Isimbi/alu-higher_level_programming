@@ -3,6 +3,7 @@
 defines Square
 """
 
+
 class Square:
     """Square class defined by size"""
 
