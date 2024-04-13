@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Delete all State objects with a name containing the letter a
+""" prints the State object with the name passed as argument
 """
 import sys
 from model_state import Base, State
@@ -13,6 +13,8 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    for instance in session.query(State).filter(State.name.like('%a%')):
-        session.delete(instance)
+    new_state = State(name='Louisiana')
+    session.add(new_state)
+    new_instance = session.query(State).filter_by(name='Louisiana').first()
+    print(new_instance.id)
     session.commit()
