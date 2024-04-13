@@ -1,28 +1,18 @@
 #!/usr/bin/python3
+"""list all states"""
+from model_state import Base, State
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sys import argv
 
-""" Write a script that lists all State objects """
-
-if __name__ == "__main__":
-
-    from sqlalchemy import create_engine
-    from sqlalchemy.ext.declarative import declarative_base
-    from sqlalchemy.orm import sessionmaker
-    import sys
-    from model_state import Base, State
-
-    inp = sys.argv
-    if len(inp) < 4:
-        exit(1)
-    conn_str = 'mysql+mysqldb://{}:{}@localhost:3306/{}'
-    engine = create_engine(conn_str.format(inp[1], inp[2], inp[3]))
-    Session = sessionmaker(bind=engine)
-
+if __name__ == '__main__':
+    user = argv[1]
+    password = argv[2]
+    db_name = argv[3]
+    db = 'mysql+mysqldb://{}:{}@localhost/{}'.format(user, password, db_name)
+    engine = create_engine(db, pool_pre_ping=True)
     Base.metadata.create_all(engine)
-
+    Session = sessionmaker(bind=engine)
     session = Session()
-
-    output = session.query(State).order_by(State.id).all()
-    for state in output:
+    for state in session.query(State).order_by(State.id).all():
         print("{}: {}".format(state.id, state.name))
-
-    session.close()
